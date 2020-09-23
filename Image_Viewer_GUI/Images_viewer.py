@@ -14,6 +14,8 @@ my_img5 = ImageTk.PhotoImage(Image.open("images/first.jpg"))
 
 image_list = [my_img1,my_img2, my_img3, my_img4, my_img5]
 
+status = Label(root, text="Image of 1 of " + str(len(image_list)), bd=1, relief=SUNKEN, anchor=W)
+
 my_label = Label(image = my_img1)
 my_label.grid(row=0, column=0, columnspan=3)
 
@@ -34,6 +36,9 @@ def forward(image_number):
     my_label.grid(row=0, column=0, columnspan=3)
     button_back.grid(row=1, column=0)
     button_forward.grid(row=1, column=2)
+    
+    status = Label(root, text="Image " + str(image_number) + " of " + str(len(image_list)), bd=1, relief=SUNKEN, anchor=E)
+    status.grid(row=2, column=0, columnspan=3, sticky= W+E)
 
 def back(image_number):
     global my_label
@@ -51,6 +56,10 @@ def back(image_number):
     my_label.grid(row=0, column=0, columnspan=3)
     button_back.grid(row=1, column=0)
     button_forward.grid(row=1, column=2)
+    
+    #Update status bar
+    status = Label(root, text="Image " + str(image_number) + " of " + str(len(image_list)), bd=1, relief=SUNKEN, anchor=W)
+    status.grid(row=2, column=0, columnspan=3, sticky= W+E)
 
 
 button_back = Button(root, text="<<", command=back, state = DISABLED)
